@@ -10,7 +10,7 @@ const tokens = (n) => {
     );
 }
 
-contract('Token', ([deployer, receiver, exchange]) => {
+contract('Token', ([deployer, receiver, exchange, user]) => {
     const name = "DAO Token";
     const symbol = "DT";
     const decimals = "18";
@@ -19,6 +19,7 @@ contract('Token', ([deployer, receiver, exchange]) => {
 
     beforeEach(async () => {
         token = await Token.new();
+        await token.mint(deployer, tokens(1000000), { from: deployer });
     })
     describe('deployment', () => {
         it('tracks the name', async () => {
@@ -33,10 +34,10 @@ contract('Token', ([deployer, receiver, exchange]) => {
             const result = await token.decimals();
             result.toString().should.equal(decimals);
         })
-        // it('tract the total sypply', async () => {
-        //     const result = await token.totalSupply()
-        //     result.toString().should.equal(totalSupply.toString());
-        // })
+        it('tract the total sypply', async () => {
+            const result = await token.totalSupply()
+            result.toString().should.equal(totalSupply.toString());
+        })
     })
     describe('sending token', () => {
         let result;
@@ -156,6 +157,15 @@ contract('Token', ([deployer, receiver, exchange]) => {
             it('reject invalid recipient', async () => {
                 await token.transferFrom(deployer, 0x0, amount, { from: exchange }).should.be.rejectedWith('invalid address');
             })
+        })
+    })
+    describe('mint token', () => {
+        beforeEach(async () => {
+            await token.mint(user, tokens(100), { from: deployer });
+        })
+        it('check mint', async () => {
+            let result = await token.balanceOf(user);
+            result.toString().should.equal(tokens(100).toString());
         })
     })
 })

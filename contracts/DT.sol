@@ -55,7 +55,9 @@ contract DT {
     return true;
   }
   function mint(address _citizen, uint256 _amount) public returns (bool success) {
-    require(msg.sender == authorizedContract, "not authorized to mint");
+    // require(msg.sender == authorizedContract, "not authorized to mint");
+    // for test DT msg.sender == owner will be remove in final code
+    require(msg.sender == authorizedContract || msg.sender == owner, "not authorized to mint");
     require(_citizen != address(0), "invalid address");
     require(_amount > 0, "amount need to be positive");
     totalSupply = totalSupply.add(_amount);
