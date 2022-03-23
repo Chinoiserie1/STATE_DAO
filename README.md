@@ -1,7 +1,7 @@
 # STATE_DAO
 DAO functioning like a state
 
-=> This DAO it's for educational purpose. This DAO want to function like state with currency, it will implement all control for state like ( social security, taxes simplification ) this DAO refers to France State so maybe some functionality of ur state will not be implemented. feel free to uprgrade this code :)
+=> This DAO it's for educational purpose. This DAO want to function like state with currency, it will implement all control for state like ( currency, social security, taxes, retirment ... ) this DAO refers to France State so maybe some functionality of ur state will not be implemented. Feel free to uprgrade this code :)
 
 This DAO will implement 1 curency ( ERC20 ) in this case DT for DAO Token.
 
@@ -16,7 +16,7 @@ TO DO:
 
   creation of Rule => not started yet
 
-  creation of an currency ERC20 => in progress: contracts/DT.sol, u can see in test folders all test path test/DT.test.js
+  creation of a currency ERC20 => in progress: contracts/DT.sol, u can see in test folders all test path test/DT.test.js
 
   creation of Taxes => not started yet
 
@@ -27,3 +27,10 @@ TO DO:
   creation of Retirement => not started yet
 
   others ...
+
+
+Project start 23/03/2022
+LUCOTTE Jérémie
+lucottejeremie@gmail.com
+twitter @__chixx__eth
+Feel free to contact me if u have any sugestion or question ;)
