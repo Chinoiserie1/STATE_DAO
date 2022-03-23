@@ -12,9 +12,11 @@ NFT will help us to know exactly what u have so it will be simple to calculate u
 
 TO DO:
 
+  creation of the DAO => in progress: contract/DAO.sol, no test yet
+
   creation of Rule => not started yet
 
-  creation of an currency ERC20 => in progress, u can see in test folders all test path test/DT.test.js
+  creation of an currency ERC20 => in progress: contracts/DT.sol, u can see in test folders all test path test/DT.test.js
 
   creation of Taxes => not started yet
 
