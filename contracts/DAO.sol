@@ -47,4 +47,8 @@ contract DAO {
     totalCitizen.add(1);
     return true;
   }
+  function getCitizenInfo(address _citizen) public view returns (User memory _user) {
+    require(_citizen == msg.sender, 'U are not able to see this info');
+    return citizen[_citizen];
+  }
 }

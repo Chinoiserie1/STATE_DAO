@@ -11,7 +11,7 @@ const tokens = (n) => {
   );
 }
 
-contract('DAO', ([deployer]) => {
+contract('DAO', ([deployer, user1, user2]) => {
   let dao;
   let token;
   beforeEach(async () => {
@@ -19,14 +19,35 @@ contract('DAO', ([deployer]) => {
     dao = await DAO.deployed();
   })
   describe('start', () => {
-    // console.log(token.address);
-    // console.log(dao);
-    it('check deployed correctly', async () => {
-      // console.log(dao.address);
-      // console.log(token.address);
+    it('check if deployed correctly with token address', async () => {
       let result = await dao.DAOToken.call();
-      // console.log(result);
       result.should.equal(token.address);
+    })
+  })
+  describe('add new citizen', () => {
+    let result;
+    const firstName = "Alice";
+    const lastName = "TSIGO";
+    beforeEach(async () => {
+      result = await dao.newCitizen(firstName, lastName, { from: user1 });
+    })
+    it('citizen added successfuly', async () => {
+      let res = await dao.getCitizenInfo(user1, { from: user1 });
+      res.id.should.equal("0", 'ID check');
+      res.firstName.should.equal(firstName, 'first name check');
+      res.lastName.should.equal(lastName, 'last name check');
+    })
+    it('check event', async () => {
+      let log = result.logs[0];
+      log.event.should.equal('NewCitizen');
+      const res = log.args;
+      res._id.toString().should.equal("0", 'ID check');
+      res._firstName.should.equal(firstName, 'first name check');
+      res._lastName.should.equal(lastName, 'last name check');
+    })
+    it('failed when another person want to get info', async () => {
+      await dao.getCitizenInfo(user1, { from: user2 })
+        .should.be.rejectedWith('VM Exception while processing transaction: revert U are not able to see this info');
     })
   })
 })

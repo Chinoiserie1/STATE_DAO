@@ -12,7 +12,7 @@ NFT will help us to know exactly what u have so it will be simple to calculate u
 
 TO DO:
 
-  creation of the DAO => in progress: contract/DAO.sol, no test yet
+  creation of the DAO => in progress: contract/DAO.sol, test path => test/DAO.test.js
 
   creation of Rule => not started yet
 
