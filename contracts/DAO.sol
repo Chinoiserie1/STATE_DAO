@@ -2,6 +2,7 @@
 pragma solidity >=0.4.21 <0.9.0;
 
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
+// DT is the DAO currency ( erc20 )
 import "./DT.sol";
 
 // actually no security of ur data everyone can check, will improve after :)
