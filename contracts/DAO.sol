@@ -4,6 +4,7 @@ pragma solidity >=0.4.21 <0.9.0;
 import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
 // DT is the DAO currency ( erc20 )
 import "./DT.sol";
+import "./SocialSecurity.sol";
 
 // actually no security of ur data everyone can check, will improve after :)
 
@@ -12,6 +13,7 @@ contract DAO {
 
   address public owner;
   DT public DAOToken;
+  SocialSecurity public DSS;
   uint256 public totalCitizen = 0;
 
   mapping(address => User) public citizen;
@@ -37,6 +39,9 @@ contract DAO {
   function setDAOToken(address _token) public onlyOwner() {
     DAOToken = DT(_token);
   }
+  function setDAOSocialSecurity(address _contract) public onlyOwner() {
+    DSS = SocialSecurity(_contract);
+  }
 
   function newCitizen(string memory _firstName, string memory _lastName) public returns (bool success) {
     User memory _user;
@@ -45,6 +50,7 @@ contract DAO {
     _user.id = totalCitizen;
     citizen[msg.sender] = _user;
     emit NewCitizen(_firstName, _lastName, totalCitizen);
+    DSS.mint(msg.sender, _firstName, _lastName, totalCitizen);
     totalCitizen.add(1);
     return true;
   }

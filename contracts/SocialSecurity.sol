@@ -35,8 +35,8 @@ contract SocialSecurity {
   }
   function mint(address _citizen, string memory _fName, string memory _lName, uint256 _id) public onlyAutoContract() {
     datas memory _data;
-    require(bytes(_fName).length > 0 && bytes(_lName).length >0, "Non existant First name or Last name");
-    require(balanceOf[_citizen] != 1, "U already have Social Security");
+    require(bytes(_fName).length > 0 && bytes(_lName).length > 0, "Non existant First name or Last name");
+    require(balanceOf[_citizen] == 0, "U already have Social Security");
     ownerOf[_id] = _citizen;
     balanceOf[_citizen] = 1;
     _data.id = _id;
