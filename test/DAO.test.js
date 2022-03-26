@@ -87,7 +87,7 @@ contract('DAO', ([deployer, user1, user2]) => {
         let res = await dss.allowance(user1);
         res.should.equal(user2);
       })
-      it('approved user to see metadata', async () => {
+      it('get metadata from approved user', async () => {
         let res = await dss.getMetadata(user1, { from: user2 });
         res.id.toString().should.equal('0');
         res.avantage.toString().should.equal('15');

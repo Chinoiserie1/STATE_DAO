@@ -11,6 +11,7 @@ module.exports = async function(deployer) {
   const dt = await DT.deployed();
   const dao = await DAO.deployed();
   const dss = await DSS.deployed();
-  let result = await dao.setDAOSocialSecurity(dss.address);
-  console.log(result);
+  // let result;
+  await dao.setDAOSocialSecurity(dss.address);
+  // console.log(result);
 };

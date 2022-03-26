@@ -30,6 +30,8 @@ TO DO:
 
   creation of properties => not started yet
 
+  creation of work structure, compagny => not started yet
+
   others ...
 
 

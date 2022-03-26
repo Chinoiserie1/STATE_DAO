@@ -2,8 +2,8 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 // this contract is for social security i will implement NFT but non-tradable for each citizen
-// just the citizen can see the info or approve user to see the info;
-// Im thinking about using SVG for citizen can see their social security as an nft
+// just the citizen can see the info or approve user to see the info
+// Im thinking about using SVG for citizen can see their social security as an image
 contract SocialSecurity {
   string public name = "DAOSocialSecurity";
   string public symbol = "DSS";
