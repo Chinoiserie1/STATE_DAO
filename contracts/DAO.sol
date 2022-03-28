@@ -5,6 +5,7 @@ import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
 // DT is the DAO currency ( erc20 )
 import "./DT.sol";
 import "./SocialSecurity.sol";
+import "./Compagnys.sol";
 
 // actually no security of ur data everyone can check, will improve after :)
 
@@ -21,9 +22,12 @@ contract DAO {
   event NewCitizen(string _firstName, string _lastName, uint256 _id);
 
   struct User {
+    // user personal info
     uint256 id;
     string firstName;
     string lastName;
+    // compagny job info
+    address[] compagny;
   }
 
   constructor(address _token) {
