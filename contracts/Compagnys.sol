@@ -18,8 +18,6 @@ contract Compagnys {
   mapping(address => uint256) balanceOf;
   mapping(uint256 => data) metadata;
   mapping(address => uint256[]) compagnyOf;
-  // thinking about how we can implement jobs
-  // mapping(uint256 => mapping(address => uint256)) jobs;
 
   event newCompagny(string _name, string _category, Compagny _compagny, uint256 _compagnyId);
 
@@ -29,15 +27,8 @@ contract Compagnys {
     uint256 timeCreation;
     Compagny compagny;
   }
-  // struct employeeData {
-  //   string p;
-  //   uint256 timeStart;
-  // }
 
-  // constructor(address _contract) {
-  //   authorizedContract = _contract;
-  // }
-  constructor() { // for test uniquely
+  constructor() {
     authorizedContract = msg.sender;
   }
 
@@ -104,6 +95,13 @@ contract Compagny {
     require(msg.sender == owner, "U are not the owner");
     _;
   }
+  function setOwner(address _newOwner) public onlyOwner() {
+    data memory _data = metadata[0];
+    _data.finishTime = block.timestamp;
+    _data.active = false;
+    metadata[0] = _data;
+    owner = _newOwner;
+  }
 
   function createNewJob(address _newEmployee, string memory _position, uint256 _salary) public onlyOwner() {
     data memory _data;
@@ -115,6 +113,9 @@ contract Compagny {
     _data.active = true;
     metadata[id] = _data;
     id = id.add(1);
+  }
+  function fired(address _citizen) public onlyOwner() {
+    
   }
 
 }

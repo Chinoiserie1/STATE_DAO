@@ -12,11 +12,9 @@ const tokens = (n) => {
 
 contract('Compagnys', ([deployer, user1]) => {
   let compagny;
-  beforeEach(async () => {
-    compagny = await Compagnys.deployed();
-  })
   describe('start', () => {
     it('check autorized address', async () => {
+      compagny = await Compagnys.new();
       let result = await compagny.authorizedContract.call();
       result.should.equal(deployer);
     })
@@ -35,7 +33,6 @@ contract('Compagnys', ([deployer, user1]) => {
       compagnyAddr = res.compagny;
       res.name.should.equal(name);
       res.category.should.equal(category);
-      // console.log(res);
     })
     it('check event', async() => {
       let log = result.logs[0];
@@ -44,7 +41,7 @@ contract('Compagnys', ([deployer, user1]) => {
         res._name.should.equal(name);
         res._category.should.equal(category);
         res._compagny.should.equal(compagnyAddr);
-        console.log(res);
+        res._compagnyId.toString().should.equal('0');
     })
   })
 })

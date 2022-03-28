@@ -29,9 +29,9 @@ contract('SocialSecurity', ([deployer, user1, user2]) => {
       res.fName.should.equal("Jeremie");
       res.lName.should.equal("Lucotte");
     })
-    it('failed when user directly mint social security',  async () => {
+    it('failed when call mint a second time',  async () => {
       await dss.mint(user1, "jeremie", "lucotte", 10, { from: user1 })
-        .should.be.rejectedWith('VM Exception while processing transaction: revert U are not authorized');
+        .should.be.rejectedWith('VM Exception while processing transaction: revert U already have Social Security');
     })
     it('failed when not approved user want to get metadata', async () => {
       await dss.getMetadata(user1, { from: user2 })
