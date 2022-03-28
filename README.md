@@ -20,7 +20,7 @@ TO DO:
 
   creation of Taxes => not started yet
 
-  creation of Social Security => in progress: contract/SocialSecurity.sol. test path => test/DAO.test.js
+  creation of Social Security => in progress: contract/SocialSecurity.sol. test path => test/SocialSecurity.test.js
 
   creation of Imposition => not started yet
 
@@ -30,7 +30,7 @@ TO DO:
 
   creation of properties => not started yet
 
-  creation of work structure, compagny => not started yet
+  creation of work structure, compagny => in progress: contract/Compagnys.sol. test path => test/Compagnys.test.js
 
   others ...
 

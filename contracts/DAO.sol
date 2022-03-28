@@ -30,21 +30,15 @@ contract DAO {
     address[] compagny;
   }
 
-  constructor(address _token) {
+  constructor() {
     owner = msg.sender;
-    DAOToken = DT(_token);
+    DAOToken = new DT();
+    DSS = new SocialSecurity();
   }
 
   modifier onlyOwner() {
     require(owner == msg.sender, "U are not the owner");
     _;
-  }
-
-  function setDAOToken(address _token) public onlyOwner() {
-    DAOToken = DT(_token);
-  }
-  function setDAOSocialSecurity(address _contract) public onlyOwner() {
-    DSS = SocialSecurity(_contract);
   }
 
   function newCitizen(string memory _firstName, string memory _lastName) public returns (bool success) {

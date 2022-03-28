@@ -26,8 +26,8 @@ contract SocialSecurity {
   event Mint(address _citizen, uint256 _id);
   event Approve(address _citizen, address _approved);
 
-  constructor(address _contract) {
-    authorizedContract = _contract;
+  constructor() {
+    authorizedContract = msg.sender;
   }
   modifier onlyAutoContract() {
     require(msg.sender == authorizedContract, "U are not authorized");
