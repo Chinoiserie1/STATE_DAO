@@ -1,4 +1,5 @@
 const Compagnys = artifacts.require('./Compagnys.sol');
+const DT = artifacts.require('./DT.sol');
 
 require('chai')
   .use(require('chai-as-promised'))
@@ -12,11 +13,15 @@ const tokens = (n) => {
 
 contract('Compagnys', ([deployer, user1]) => {
   let compagny;
+  let daoToken;
   describe('start', () => {
     it('check autorized address', async () => {
       compagny = await Compagnys.new();
       let result = await compagny.authorizedContract.call();
       result.should.equal(deployer);
+    })
+    it('deploy DAO Token', async () => {
+      daoToken = await DT.new();
     })
   })
   describe('Compagny', () => {
