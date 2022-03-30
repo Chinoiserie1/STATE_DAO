@@ -10,6 +10,7 @@ contract Compagny {
   uint256 public id = 0;
   uint256 public taxe = 10;
   address public owner;
+  address public DAO;
   DT public DAOToken;
 
   mapping(address => uint256) ownerOf;
@@ -35,8 +36,9 @@ contract Compagny {
     uint256 lastPayment;
   }
 
-  constructor(address _token, address _owner, string memory _name) {
+  constructor(address _DAO, address _token, address _owner, string memory _name) {
     data memory _data;
+    DAO = _DAO;
     DAOToken = DT(_token);
     owner = _owner;
     compagny = _name;
@@ -122,8 +124,9 @@ contract Compagny {
     uint256 _id = ownerOf[_citizen];
     metadata[_id].lastPayment = block.timestamp;
     uint256 res = calculSalary(_id);
+    uint256 resTaxe = res.mul(15).div(100);
     require(DAOToken.transfer(_citizen, res), "failed to transfer");
+    require(DAOToken.transfer(DAO, resTaxe), "failed to pay taxe");
     emit Payment(_citizen, res);
   }
-
 }

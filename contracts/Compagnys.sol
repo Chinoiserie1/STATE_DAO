@@ -50,7 +50,7 @@ contract Compagnys {
     _data.name = _name;
     _data.category = _category;
     _data.timeCreation = block.timestamp;
-    _data.compagny = new Compagny(address(DAOToken), msg.sender, _name); // create a new contract Compagny
+    _data.compagny = new Compagny(authorizedContract, address(DAOToken), msg.sender, _name); // create a new contract Compagny
     metadata[compagnyId] = _data;
     emit NewCompagny(_name, _category, _data.compagny, compagnyId);
     compagnyId.add(1);
