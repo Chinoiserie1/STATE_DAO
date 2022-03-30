@@ -21,6 +21,7 @@ contract Compagny {
   event NewSalary(address _citizen, uint256 _newSalary);
   event NewSalaryPeriod(address _citizen, uint256 _newSalaryPeriod);
   event Payment(address _citizen, uint256 _payment);
+  event Transfer(address _to, uint256 _value);
 
   struct data {
     address citizen;
@@ -128,5 +129,9 @@ contract Compagny {
     require(DAOToken.transfer(_citizen, res), "failed to transfer");
     require(DAOToken.transfer(DAO, resTaxe), "failed to pay taxe");
     emit Payment(_citizen, res);
+  }
+  function transfer(address _to, uint256 _value) public onlyOwner() {
+    require(DAOToken.transfer(_to, _value));
+    emit Transfer(_to, _value);
   }
 }
